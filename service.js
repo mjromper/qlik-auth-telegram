@@ -45,7 +45,7 @@ passport.use(
     new TelegramStrategy({
         clientID: settings.client_id,
         clientSecret: settings.client_secret,
-        callbackURL: 'http://ukwin-aor-w10.qliktech.com:9999/oauth2callback'
+        callbackURL: '/oauth2callback'
     },
     function(accessToken, refreshToken, profile, done) {
        // asynchronous verification, for effect...
