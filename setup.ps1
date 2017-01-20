@@ -14,15 +14,15 @@ $Host.UI.RawUI.BackgroundColor = "Black"
 Clear-Host
 
 # define some variables
-$temp="c:\TempO365\Office365AuthSetup-yFH4gu"
+$temp="c:\TelegramTemp\TelegramAuthSetup-yFH4gu"
 $npm="npm-1.4.12.zip"
 $config="c:\Program Files\Qlik\Sense\ServiceDispatcher"
-$target="$config\Node\Office365-Auth"
+$target="$config\Node\Telegram-Auth"
 
 # check if module is installed
 if(!(Test-Path -Path "$target\node_modules")) {
 
-    $confirm = Read-Host "This script will install the Office 365 Auth module, do you want to proceed? [Y/n]"
+    $confirm = Read-Host "This script will install the Telegram Auth module, do you want to proceed? [Y/n]"
     if ($confirm -eq 'n') {
       Break
     }
@@ -36,9 +36,8 @@ if(!(Test-Path -Path "$target\node_modules")) {
     # check if module has been downloaded
     if(!(Test-Path -Path "$target\src")) {
         New-Item -Path "$target\src" -Type directory | Out-Null
-        Invoke-WebRequest "http://raw.githubusercontent.com/mjromper/qlik-auth-office365/master/service.js" -OutFile "$target\service.js"
-        Invoke-WebRequest "http://raw.githubusercontent.com/mjromper/qlik-auth-office365/master/o365.js" -OutFile "$target\o365.js"
-        Invoke-WebRequest "http://raw.githubusercontent.com/mjromper/qlik-auth-office365/master/package.json" -OutFile "$target\package.json"
+        Invoke-WebRequest "http://raw.githubusercontent.com/mjromper/qlik-auth-telegram/master/service.js" -OutFile "$target\service.js"
+        Invoke-WebRequest "http://raw.githubusercontent.com/mjromper/qlik-auth-telegram/master/package.json" -OutFile "$target\package.json"
     }
 
     # check if npm has been unzipped already
@@ -64,20 +63,20 @@ if(!(Test-Path -Path "$target\node_modules")) {
 function Read-Default($text, $defaultValue) { $prompt = Read-Host "$($text) [$($defaultValue)]"; return ($defaultValue,$prompt)[[bool]$prompt]; }
 
 # check if config has been added already
-if (!(Select-String -path "$config\services.conf" -pattern "Identity=aor-o365-auth" -quiet)) {
+if (!(Select-String -path "$config\services.conf" -pattern "Identity=aor-telegram-auth" -quiet)) {
 
 	$settings = @"
 
 
-[office365-auth]
-Identity=aor-o365-auth
+[telegram-auth]
+Identity=aor-telegram-auth
 Enabled=true
-DisplayName=Office365 Auth
+DisplayName=Telegram Auth
 ExecType=nodejs
 ExePath=Node\node.exe
-Script=Node\office365-auth\service.js
+Script=Node\telegram-auth\service.js
 
-[office365-auth.parameters]
+[telegram-auth.parameters]
 user_directory=
 auth_port=
 client_id=
@@ -90,8 +89,8 @@ client_secret=
 Write-Host $nl"CONFIGURE MODULE"
 Write-Host $nl"To make changes to the configuration in the future just re-run this script."
 
-$user_directory=Read-Default $nl"Enter name of user directory" "OFFICE365"
-$auth_port=Read-Default $nl"Enter port" "5555"
+$user_directory=Read-Default $nl"Enter name of user directory" "TELEGRAM"
+$auth_port=Read-Default $nl"Enter port" "9999"
 $client_id=Read-Default $nl"Application ID" $client_id
 $client_secret=Read-Default $nl"Client Secret" $client_secret
 
