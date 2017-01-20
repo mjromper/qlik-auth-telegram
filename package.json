@@ -7,7 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "express": "~4.14.0",
-    "oauth": "^0.9.14",
     "passport": "^0.3.2",
     "passport-telegram": "^1.0.0",
     "qlik-auth": ">= 1.1.0"
@@ -16,7 +15,7 @@
   "keywords": [
     "qlik",
     "sense",
-    "office365",
+    "telegram",
     "oauth2"
   ],
   "repository": {
