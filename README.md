@@ -17,7 +17,7 @@ Qlik Sense NodeJs module to authenticate with Telegram in Qlik Sense.
 ### Installation of this module
 
 * Launch PowerShell in Administrator mode (right-click and select Run As Administrator)
-* Create and change directory to an empty directory, i.e. C:\TempO365
+* Create and change directory to an empty directory, i.e. C:\TelegramTemp
 
 ```powershell
     mkdir \TelegramTemp; cd \TelegramTemp
@@ -47,7 +47,7 @@ When the script is finished you need to restart Qlik ServiceDispacher service.
 
 ### Qlik Sense Virtual Proxy
 1. Create a new Virtual Proxy in QMC
-2. For Authentication module redirect URI enter the same ***servername*** and ***port*** you used for Authorized redirect URI in the Application Registration Portal.
+2. For Authentication module redirect URI enter the same ***servername*** and ***port*** you used for Authorized redirect URL in you app configuration in Telepass.me
 
 ![](https://github.com/mjromper/qlik-auth-telegram/raw/master/docs/images/virtual-proxy.png)
 3. Finish the Virtual Proxy configuration. The proxy will restart and the new module should be good to go!. Open the url https://your_sense_server_host/telegram (where 'telegram' is the prefix of virtual proxy)
